@@ -1,0 +1,28 @@
+Build a web-based MVP called Investment Decision OS — 
+a minimalist app that helps investors record, 
+track and review trading/investing decisions. 
+Core pages: (A) Decision Card creation/edit (must be required fields), 
+(B) Decision List (active / closed / archived), 
+(C) Result Tracker (current PnL, holding time, stop-loss triggers), 
+and (D) Review Flow that is automatically triggered when 
+a sell event is recorded and continues after sell for post-mortem notes. 
+Provide a floating quick-note button visible across data pages to 
+capture ad-hoc notes and link them to Decision Cards. 
+Tech stack: React (or Next.js) + TypeScript, Tailwind CSS, Firestore (or similar NoSQL) 
+for fast prototyping, Auth (email or Google), 
+simple serverless functions to fetch daily close prices. 
+Deliverables: UI wireframes, Firestore schema, REST/GraphQL endpoints 
+(or serverless functions), basic unit tests, and a deployable preview (Vercel/Netlify). 
+MVP must block save when required Decision Card fields are empty and 
+must surface a forced review modal whenever a sell is executed. 
+Provide README with run / deploy steps. Acceptance criteria: 
+create/edit Decision Card; auto-calc PnL from stored entry price and latest close; 
+forced review workflow upon sell; floating quick-note works and links to cards.
+
+
+
+
+
+
+
+

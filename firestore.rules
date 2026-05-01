@@ -1,0 +1,14 @@
+// Firestore 安全規則
+// 確保每位用戶只能讀寫自己的資料，防止未授權存取
+// 部署方式：在 Firebase 控制台 > Firestore > 規則 貼上此內容
+
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // users/{userId}/** 底下所有文件：
+    // 必須已登入（request.auth != null）且操作的 userId 要與自己的 UID 一致
+    match /users/{userId}/{document=**} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+  }
+}

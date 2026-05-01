@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(Get-ChildItem -Path \"C:\\\\Users\\\\姍佩\\\\Desktop\\\\Vibe Coding\\\\MVP\" -Force)",
+      "Bash(Select-Object -Property Name, Mode)",
+      "Bash(npm run *)",
+      "Bash(Get-Content \"C:\\\\Users\\\\姍佩\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\C--Users----Desktop-Vibe-Coding-MVP\\\\8a2f9b35-a6ab-478a-8094-af299d573bd3\\\\tasks\\\\be76ecorv.output\" -Wait)",
+      "Bash(Select-String -Pattern \"ready|error|localhost|compiled|warn|failed\")",
+      "Bash(vercel whoami *)",
+      "PowerShell(Get-Command *)",
+      "Bash(Get-Content \"C:\\\\Users\\\\姍佩\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\C--Users----Desktop-Vibe-Coding-MVP\\\\8a2f9b35-a6ab-478a-8094-af299d573bd3\\\\tasks\\\\bipord9uq.output\" -Wait)",
+      "Bash(Select-String --% -Pattern \"Error|error|success|Success|https://|ready|Ready|inspect|failed|Failed|completed\")"
+    ]
+  }
+}
