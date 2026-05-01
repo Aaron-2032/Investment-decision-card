@@ -72,12 +72,14 @@ export default function AuthPage() {
     setGoogleLoading(true)
     try {
       await signInWithGoogle()
-      // signInWithRedirect 會直接導向 Google，不會走到這裡
+      router.replace('/decisions')
     } catch (err: unknown) {
       const code = (err as { code?: string }).code ?? ''
       const msg = (err as { message?: string }).message ?? ''
       if (code === 'auth/unauthorized-domain') {
         toast.error('此網域尚未在 Firebase 授權')
+      } else if (code === 'auth/popup-closed-by-user' || code === 'auth/cancelled-popup-request') {
+        // 使用者自行關閉，不顯示錯誤
       } else {
         toast.error(`Google 登入失敗：${code || msg}`)
       }
