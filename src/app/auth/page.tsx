@@ -7,7 +7,7 @@
 // 也支援 Google 一鍵登入（OAuth Popup 流程）
 // 登入成功後自動跳轉到 /decisions
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { BarChart2, Mail, Lock, Eye, EyeOff, Chrome } from 'lucide-react'
 import { useAuth } from '@/contexts/AuthContext'
@@ -17,8 +17,14 @@ import toast from 'react-hot-toast'
 type Mode = 'signin' | 'signup'
 
 export default function AuthPage() {
-  const { signInWithGoogle, signInWithEmail, signUpWithEmail } = useAuth()
+  const { signInWithGoogle, signInWithEmail, signUpWithEmail, user, loading } = useAuth()
   const router = useRouter()
+
+  useEffect(() => {
+    if (!loading && user) {
+      router.replace('/decisions')
+    }
+  }, [user, loading, router])
   const [mode, setMode] = useState<Mode>('signin')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
