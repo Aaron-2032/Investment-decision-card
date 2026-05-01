@@ -17,14 +17,14 @@ import toast from 'react-hot-toast'
 type Mode = 'signin' | 'signup'
 
 export default function AuthPage() {
-  const { signInWithGoogle, signInWithEmail, signUpWithEmail, user, loading } = useAuth()
+  const { signInWithGoogle, signInWithEmail, signUpWithEmail, user, loading: authLoading } = useAuth()
   const router = useRouter()
 
   useEffect(() => {
-    if (!loading && user) {
+    if (!authLoading && user) {
       router.replace('/decisions')
     }
-  }, [user, loading, router])
+  }, [user, authLoading, router])
   const [mode, setMode] = useState<Mode>('signin')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
