@@ -66,20 +66,15 @@ export default function AuthPage() {
     setGoogleLoading(true)
     try {
       await signInWithGoogle()
-      router.replace('/decisions')
+      // signInWithRedirect 會直接導向 Google，不會走到這裡
     } catch (err: unknown) {
       const code = (err as { code?: string }).code ?? ''
       const msg = (err as { message?: string }).message ?? ''
       if (code === 'auth/unauthorized-domain') {
-        toast.error('此網域尚未在 Firebase 授權，請聯絡管理員')
-      } else if (code === 'auth/popup-closed-by-user') {
-        toast.error('登入視窗已關閉，請重試')
-      } else if (code === 'auth/popup-blocked') {
-        toast.error('瀏覽器封鎖了登入視窗，請允許彈出視窗後重試')
+        toast.error('此網域尚未在 Firebase 授權')
       } else {
         toast.error(`Google 登入失敗：${code || msg}`)
       }
-    } finally {
       setGoogleLoading(false)
     }
   }

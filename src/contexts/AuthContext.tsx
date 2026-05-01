@@ -13,7 +13,8 @@ import React, {
 } from 'react'
 import {
   onAuthStateChanged,
-  signInWithPopup,
+  signInWithRedirect,
+  getRedirectResult,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   signOut,
@@ -38,16 +39,17 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     // onAuthStateChanged 是 Firebase 的監聽器：登入/登出時自動觸發，更新 user 狀態
-    // 回傳的 unsub 函式在元件卸載時呼叫，避免記憶體洩漏
     const unsub = onAuthStateChanged(auth, (u) => {
       setUser(u)
       setLoading(false)
     })
+    // 處理 Google redirect 登入回來後的結果
+    getRedirectResult(auth).catch(() => {})
     return unsub
   }, [])
 
   const signInWithGoogle = useCallback(async () => {
-    await signInWithPopup(auth, googleProvider)
+    await signInWithRedirect(auth, googleProvider)
   }, [])
 
   const signInWithEmail = useCallback(async (email: string, password: string) => {
